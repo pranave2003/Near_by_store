@@ -23,14 +23,14 @@ class _StorekeeeperOrderViewState extends State<StorekeeeperOrderView> {
             height: 50.h,
             // width: 330.w,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
+
                 color: Color(0xffD5F1E9)),
             child: TabBar(
               labelColor: Colors.white,
               unselectedLabelColor: Colors.black,
               indicatorSize: TabBarIndicatorSize.tab,
               indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.r),
+                borderRadius: BorderRadius.circular(1.r),
                 color: Color(0xff4D6877),
               ),
               tabs: [
