@@ -10,6 +10,8 @@ class StoreKeeperOrder extends StatefulWidget {
 }
 
 class _StoreKeeperOrderState extends State<StoreKeeperOrder> {
+  var order = ["packed", "packing"];
+  String dropdownorder = 'packed';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,52 +82,35 @@ class _StoreKeeperOrderState extends State<StoreKeeperOrder> {
                 Container(
                   width: 300.w,
                   height: 50.h,
-                  child: TextButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (Builder) {
-                              return AlertDialog(
-                                backgroundColor: Color(0xffD5F1E9),
-                                title: Text(""),
-                                content: Container(
-                                    width: 50.w,
-                                    height: 40.h,
-                                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                      Text(
-                                        "Packing",
-                                        style: TextStyle(color: Colors.green),
-                                      ),
-                                      IconButton(onPressed: () {
-
-                                      }, icon: Icon(Icons.keyboard_arrow_down))
-                                    ]),
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(30),
-                                        border: Border.all())),
-                                actions: [
-                                  Center(
-                                    child: ElevatedButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    Color(0xff668796))),
-                                        onPressed: () {Navigator.of(context).pop();},
-                                        child: Text(
-                                          "SUBMIT",
-                                          style: TextStyle(color: Colors.white),
-                                        )),
-                                  )
-                                ],
-                              );
-                            });
-                      },
-                      child: Text(
-                        "Add Status",
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      DropdownButton(
+                        focusColor: Colors.blue,
+                        dropdownColor: Colors.black26,
+                        iconEnabledColor: Colors.white,
                         style: TextStyle(color: Colors.white),
-                      )),
+                        value: dropdownorder,
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: order.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownorder = newValue!;
+                          });
+                        },
+                      ),
+                      TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Add Status",
+                            style: TextStyle(color: Colors.white),
+                          )),
+                    ],
+                  ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.sp),
                       color: Color(0xff4D6877)),
