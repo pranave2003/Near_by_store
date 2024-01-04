@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ADDPRoduct extends StatefulWidget {
   const ADDPRoduct({super.key});
@@ -10,15 +13,21 @@ class ADDPRoduct extends StatefulWidget {
 }
 
 class _ADDPRoductState extends State<ADDPRoduct> {
+  File? Storeimage;
+  var items=["kg","gram"];
+  var product=["Fruit","vegitable","grocery"];
+  String dropdownproduct='Fruit';
+
+  String dropdownvalue='kg';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add Store")),
+      appBar: AppBar(title: Text("Add Product")),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-              height: 730.h,
+              height: 760.h,
               width: 330.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -29,31 +38,25 @@ class _ADDPRoductState extends State<ADDPRoduct> {
                     Padding(
                       padding: EdgeInsets.only(top: 20.h),
                       child: Container(
-                        width: 280.w,
-                        height: 200,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                    width: 50.w,
-                                    height: 50.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                            image:
-                                                AssetImage("assets/photo 1.jpg"),
-                                            fit: BoxFit.fill))),
-                              ],
-                            ),
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                      ),
+                          width: 280.w,
+                          height: 200,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: Storeimage != null
+                              ? Image.file(Storeimage!)
+                              : InkWell(
+                            onTap: () async {
+                              final img = await ImagePicker()
+                                  .pickImage(
+                                  source: ImageSource.gallery);
+                              setState(() {
+                                Storeimage = File(img!.path);
+                              });
+                            },
+                            child: Icon(
+                                Icons.add_photo_alternate_outlined),
+                          )),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 30.w, top: 20.h),
@@ -85,6 +88,40 @@ class _ADDPRoductState extends State<ADDPRoduct> {
                                 borderRadius: BorderRadius.circular(20.sp),
                                 color: Colors.white),
                           )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30.w, top: 20.h),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Product",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.only(left: 30.w),
+                      child: Row(
+                        children: [
+                          DropdownButton(
+                            value: dropdownproduct,
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            items: product.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownproduct = newValue!;
+                              });
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -129,7 +166,21 @@ class _ADDPRoductState extends State<ADDPRoduct> {
                         children: [
                           Column(
                             children: [
-                              Text("KG"),
+                              DropdownButton(
+                                value: dropdownvalue,
+                                icon: const Icon(Icons.keyboard_arrow_down),
+                                items: items.map((String items) {
+                                  return DropdownMenuItem(
+                                    value: items,
+                                    child: Text(items),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    dropdownvalue = newValue!;
+                                  });
+                                },
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

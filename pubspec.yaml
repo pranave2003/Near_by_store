@@ -29,6 +29,11 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter_screenutil: ^5.9.0
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.13.6
+  image_picker: ^1.0.6
+
+
   flutter_rating_bar: ^4.0.1
   flutter:
     sdk: flutter
@@ -75,7 +80,7 @@ flutter:
      - assets/Carrot.png
      - assets/Magi.png
      - assets/photo 1.jpg
-     -
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
