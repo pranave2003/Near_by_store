@@ -10,6 +10,7 @@ class UserLogin extends StatefulWidget {
 }
 
 class _UserLoginState extends State<UserLogin> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +46,7 @@ class _UserLoginState extends State<UserLogin> {
                     child: Text(
                       "LOGIN",
                       style:
-                      TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
                   )
                 ],
@@ -57,7 +58,7 @@ class _UserLoginState extends State<UserLogin> {
                     Text(
                       " User name",
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -71,11 +72,13 @@ class _UserLoginState extends State<UserLogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
+
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Enter username",
                               hintStyle: TextStyle(color: Colors.grey))),
-                      decoration: BoxDecoration(border: Border.all(color: Colors.grey,width: 2),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 2),
                           borderRadius: BorderRadius.circular(20.sp),
                           color: Colors.white),
                     )
@@ -106,18 +109,19 @@ class _UserLoginState extends State<UserLogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
+
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Enter Password",
                               hintStyle: TextStyle(color: Colors.grey))),
-                      decoration: BoxDecoration(border: Border.all(width: 2,color: Colors.grey),
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.grey),
                           borderRadius: BorderRadius.circular(20.sp),
                           color: Colors.white),
                     )
                   ],
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.only(top: 90.h),
                 child: Row(
@@ -139,10 +143,12 @@ class _UserLoginState extends State<UserLogin> {
                   ],
                 ),
               ),
-              TextButton(onPressed:  () {
-
-              }, child: Text("Sing up",style: TextStyle(color: Colors.black87),))
-
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Sing up",
+                    style: TextStyle(color: Colors.black87),
+                  ))
             ],
           ),
         ));
