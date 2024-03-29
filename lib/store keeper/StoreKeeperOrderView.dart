@@ -17,14 +17,14 @@ class StorekeeeperOrderView extends StatefulWidget {
 class _StorekeeeperOrderViewState extends State<StorekeeeperOrderView> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(length: 4,initialIndex: 0,
+    return DefaultTabController(
+      length: 4,
+      initialIndex: 0,
       child: Scaffold(
           bottomNavigationBar: Container(
             height: 50.h,
             // width: 330.w,
-            decoration: BoxDecoration(
-
-                color: Color(0xffD5F1E9)),
+            decoration: BoxDecoration(color: Color(0xffD5F1E9)),
             child: TabBar(
               labelColor: Colors.white,
               unselectedLabelColor: Colors.black,
@@ -58,30 +58,35 @@ class _StorekeeeperOrderViewState extends State<StorekeeeperOrderView> {
                 )),
                 Tab(
                     child: Text(
-                      'Review',
-                      style: TextStyle(
-                        // color: Colors.black,
-                        fontSize: 16.sp,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        height: 0.h,
-                      ),
-                    )),
+                  'Review',
+                  style: TextStyle(
+                    // color: Colors.black,
+                    fontSize: 16.sp,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    height: 0.h,
+                  ),
+                )),
                 Tab(
                     child: Text(
-                      'Profile',
-                      style: TextStyle(
-                        // color: Colors.black,
-                        fontSize: 16.sp,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        height: 0.h,
-                      ),
-                    ))
+                  'Profile',
+                  style: TextStyle(
+                    // color: Colors.black,
+                    fontSize: 16.sp,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    height: 0.h,
+                  ),
+                ))
               ],
             ),
           ),
-          body: TabBarView(children: [StorekeepOrderList(),StStoreList(),STReview(),STprofile()])),
+          body: TabBarView(children: [
+            StorekeepOrderList(),
+            StStoreList(),
+            STReview(),
+            STprofile()
+          ])),
     );
   }
 }

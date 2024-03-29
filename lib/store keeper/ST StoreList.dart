@@ -20,12 +20,8 @@ class _StStoreListState extends State<StStoreList> {
         children: [
           SafeArea(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                    onPressed: () {
-
-                    },
-                    icon: Icon(Icons.arrow_back)),
                 Text(
                   "Added Store",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
@@ -36,14 +32,18 @@ class _StStoreListState extends State<StStoreList> {
           Container(
             height: 650.h,
             child: ListView.builder(
-              itemCount: 2,
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.all(10.sp),
                   child: InkWell(
-                    onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return StoreKeeperProduct();
-                    },));},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return StoreKeeperProduct();
+                        },
+                      ));
+                    },
                     child: Container(
                       height: 120.h,
                       width: 100.w,
@@ -110,11 +110,13 @@ class _StStoreListState extends State<StStoreList> {
                 width: 300.w,
                 height: 50.h,
                 child: TextButton(
-                    onPressed: () { Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return StoreKeeperAddStore();
-                      },
-                    ));},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return StoreKeeperAddStore();
+                        },
+                      ));
+                    },
                     child: Text(
                       "Add Store",
                       style: TextStyle(color: Colors.white),

@@ -8,7 +8,9 @@ import 'package:near_by_store/store%20keeper/STReview.dart';
 import 'package:near_by_store/store%20keeper/StoreKeeperAddStore.dart';
 import 'package:near_by_store/store%20keeper/StoreKeeperOrderView.dart';
 import 'package:near_by_store/store%20keeper/StoreKeeperProduct.dart';
+import 'package:near_by_store/store%20keeper/StoreRegister.dart';
 import 'package:near_by_store/store%20keeper/StorekeeperEditProfile.dart';
+import 'package:near_by_store/store%20keeper/sklogin.dart';
 import 'package:near_by_store/user/Fruits.dart';
 import 'package:near_by_store/user/Grocery.dart';
 import 'package:near_by_store/user/User%20cart.dart';
@@ -33,12 +35,11 @@ import 'admin/admin user.dart';
 import 'admin/admin_login.dart';
 import 'firebase_options.dart';
 
-void main()async
-
-{ WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -48,17 +49,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(builder: (context, child) =>
-      MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: UserLogin()
-      ),
+    return ScreenUtilInit(
+      builder: (context, child) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: Sklogin()),
       designSize: Size(390, 844),
     );
   }
 }
-

@@ -2,17 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:near_by_store/store%20keeper/sklogin.dart';
 
-import 'UserLogin.dart';
-
-class UserRegister extends StatefulWidget {
-  const UserRegister({super.key});
+class StoreRegister extends StatefulWidget {
+  const StoreRegister({super.key});
 
   @override
-  State<UserRegister> createState() => _UserRegisterState();
+  State<StoreRegister> createState() => _StoreRegisterState();
 }
 
-class _UserRegisterState extends State<UserRegister> {
+class _StoreRegisterState extends State<StoreRegister> {
   final formkey = GlobalKey<FormState>();
   var namectrl = TextEditingController();
   var emailctrl = TextEditingController();
@@ -22,8 +21,8 @@ class _UserRegisterState extends State<UserRegister> {
   var phonectrl = TextEditingController();
 
   Future<dynamic> sigh() async {
-    await FirebaseFirestore.instance.collection('User').add({
-      "username": namectrl.text,
+    await FirebaseFirestore.instance.collection('store').add({
+      "shopname": namectrl.text,
       "pincode": pinctrl.text,
       "mail": emailctrl.text,
       "location": addressctrl.text,
@@ -35,7 +34,7 @@ class _UserRegisterState extends State<UserRegister> {
       print("Success");
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
-          return UserLogin();
+          return Sklogin();
         },
       ));
       print("Signup success");
@@ -77,7 +76,7 @@ class _UserRegisterState extends State<UserRegister> {
                         20,
                       ),
                       child: Text(
-                        "Sign Up",
+                        " Store Keeper Sign Up",
                         style: TextStyle(
                             fontWeight: FontWeight.w800, fontSize: 20),
                       ),
@@ -337,7 +336,7 @@ class _UserRegisterState extends State<UserRegister> {
 
                 Padding(
                   padding: EdgeInsets.only(top: 30.h),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
@@ -352,11 +351,30 @@ class _UserRegisterState extends State<UserRegister> {
                                 sigh();
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               "REGISTER",
                               style: TextStyle(color: Colors.white),
                             )),
-                      )
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Sklogin(),
+                                    ));
+                              },
+                              child: const Text(
+                                "Login ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black),
+                              )),
+                        ],
+                      ),
                     ],
                   ),
                 ),

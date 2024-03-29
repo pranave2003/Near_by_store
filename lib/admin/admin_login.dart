@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'admin home.dart';
+
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});
 
@@ -10,6 +12,18 @@ class AdminLogin extends StatefulWidget {
 }
 
 class _AdminLoginState extends State<AdminLogin> {
+  var Name = TextEditingController();
+  var Pass = TextEditingController();
+  login() {
+    if (Name.text == 'admin@gmail.com' && Pass.text == '123') {
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) {
+          return AdminHome();
+        },
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +59,7 @@ class _AdminLoginState extends State<AdminLogin> {
                     child: Text(
                       "LOGIN",
                       style:
-                      TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
                   )
                 ],
@@ -55,9 +69,9 @@ class _AdminLoginState extends State<AdminLogin> {
                 child: Row(
                   children: [
                     Text(
-                      " User name",
+                      " Username",
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
@@ -71,11 +85,13 @@ class _AdminLoginState extends State<AdminLogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
+                          controller: Name,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Enter username",
                               hintStyle: TextStyle(color: Colors.grey))),
-                      decoration: BoxDecoration(border: Border.all(color: Colors.grey,width: 2),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 2),
                           borderRadius: BorderRadius.circular(20.sp),
                           color: Colors.white),
                     )
@@ -106,18 +122,19 @@ class _AdminLoginState extends State<AdminLogin> {
                       width: 290.w,
                       height: 50.h,
                       child: TextFormField(
+                          controller: Pass,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "  Enter Password",
                               hintStyle: TextStyle(color: Colors.grey))),
-                      decoration: BoxDecoration(border: Border.all(width: 2,color: Colors.grey),
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.grey),
                           borderRadius: BorderRadius.circular(20.sp),
                           color: Colors.white),
                     )
                   ],
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.only(top: 90.h),
                 child: Row(
@@ -127,7 +144,9 @@ class _AdminLoginState extends State<AdminLogin> {
                       width: 190.w,
                       height: 50.h,
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            login();
+                          },
                           child: Text(
                             "LOGIN",
                             style: TextStyle(color: Colors.white),
@@ -139,7 +158,6 @@ class _AdminLoginState extends State<AdminLogin> {
                   ],
                 ),
               ),
-
             ],
           ),
         ));

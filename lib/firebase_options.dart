@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD0W6PM2U9YCW35MQPZHnoiPE7r3HzD4QY',
-    appId: '1:517039412881:web:38910ae627fc5147621130',
-    messagingSenderId: '517039412881',
-    projectId: 'nearbystore-87beb',
-    authDomain: 'nearbystore-87beb.firebaseapp.com',
-    storageBucket: 'nearbystore-87beb.appspot.com',
-    measurementId: 'G-NTZRWNTGF3',
+    apiKey: 'AIzaSyDKo4eo3ZNsKJfeo623yjnbBJzNWBZLfos',
+    appId: '1:190169579590:web:1e57a3ff02835a81b58a47',
+    messagingSenderId: '190169579590',
+    projectId: 'nearbystore-4a026',
+    authDomain: 'nearbystore-4a026.firebaseapp.com',
+    storageBucket: 'nearbystore-4a026.appspot.com',
+    measurementId: 'G-7ZS902JCNB',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBapCB83BxGyjA_urU_YMl2RnzxIRcyQhA',
-    appId: '1:517039412881:android:c4f48eedd313ddcd621130',
-    messagingSenderId: '517039412881',
-    projectId: 'nearbystore-87beb',
-    storageBucket: 'nearbystore-87beb.appspot.com',
+    apiKey: 'AIzaSyD4FyUhzaX-qoF9TEGHzfHvUyuK4e-ol94',
+    appId: '1:190169579590:android:a6a4a933e23697aab58a47',
+    messagingSenderId: '190169579590',
+    projectId: 'nearbystore-4a026',
+    storageBucket: 'nearbystore-4a026.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAFWDgcFQec-8bcWbSN_0kVxxnpoH1RiaQ',
-    appId: '1:517039412881:ios:6eca1e36bebcd03e621130',
-    messagingSenderId: '517039412881',
-    projectId: 'nearbystore-87beb',
-    storageBucket: 'nearbystore-87beb.appspot.com',
+    apiKey: 'AIzaSyDA4Rn_10c0fNOON4fWfZ3Qd6VgQ1riY8I',
+    appId: '1:190169579590:ios:7e2bba851970f81eb58a47',
+    messagingSenderId: '190169579590',
+    projectId: 'nearbystore-4a026',
+    storageBucket: 'nearbystore-4a026.appspot.com',
     iosBundleId: 'com.example.nearByStore',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAFWDgcFQec-8bcWbSN_0kVxxnpoH1RiaQ',
-    appId: '1:517039412881:ios:994c87954a0ad680621130',
-    messagingSenderId: '517039412881',
-    projectId: 'nearbystore-87beb',
-    storageBucket: 'nearbystore-87beb.appspot.com',
+    apiKey: 'AIzaSyDA4Rn_10c0fNOON4fWfZ3Qd6VgQ1riY8I',
+    appId: '1:190169579590:ios:888fadbc3d642108b58a47',
+    messagingSenderId: '190169579590',
+    projectId: 'nearbystore-4a026',
+    storageBucket: 'nearbystore-4a026.appspot.com',
     iosBundleId: 'com.example.nearByStore.RunnerTests',
   );
 }

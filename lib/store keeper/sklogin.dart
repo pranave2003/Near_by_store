@@ -3,31 +3,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'StoreKeeperOrderView.dart';
+import 'StoreRegister.dart';
 
-import 'UserHome.dart';
-import 'UserRegister.dart';
-
-class UserLogin extends StatefulWidget {
-  const UserLogin({super.key});
+class Sklogin extends StatefulWidget {
+  const Sklogin({super.key});
 
   @override
-  State<UserLogin> createState() => _UserLoginState();
+  State<Sklogin> createState() => _SkloginState();
 }
 
-class _UserLoginState extends State<UserLogin> {
+class _SkloginState extends State<Sklogin> {
   bool isloading = true;
   var username = TextEditingController();
   var password = TextEditingController();
   final formkey = GlobalKey<FormState>();
   String id = '';
-  String name = '';
-  String email = '';
-  String phone = '';
-  String path = '';
 
   void userLogin() async {
     final user = await FirebaseFirestore.instance
-        .collection('User')
+        .collection('store')
         .where('mail', isEqualTo: username.text)
         .where('password', isEqualTo: password.text)
         .where('status', isEqualTo: 1)
@@ -47,7 +42,7 @@ class _UserLoginState extends State<UserLogin> {
       print("Sighn up sucess");
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
-          return UserHome();
+          return StorekeeeperOrderView();
         },
       ));
     } else {
@@ -97,7 +92,7 @@ class _UserLoginState extends State<UserLogin> {
                       20,
                     ),
                     child: Text(
-                      " USER LOGIN",
+                      " SHOPE KEEPER LOGIN",
                       style:
                           TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                     ),
@@ -211,7 +206,7 @@ class _UserLoginState extends State<UserLogin> {
                   onPressed: () {
                     Navigator.pushReplacement(context, MaterialPageRoute(
                       builder: (context) {
-                        return UserRegister();
+                        return StoreRegister();
                       },
                     ));
                   },

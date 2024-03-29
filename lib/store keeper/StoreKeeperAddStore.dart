@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class StoreKeeperAddStore extends StatefulWidget {
   const StoreKeeperAddStore({super.key});
@@ -13,7 +16,94 @@ class StoreKeeperAddStore extends StatefulWidget {
 }
 
 class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
-  File? selectimg;
+  var shopenaamectrl = TextEditingController();
+  var addressctrl = TextEditingController();
+  var pincodectrl = TextEditingController();
+
+  void initState() {
+    getData();
+  }
+
+  var imageURL;
+  XFile? _image;
+
+  Future<void> pickimage() async {
+    final ImagePicker _picker = ImagePicker();
+    try {
+      XFile? pickedimage = await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedimage != null) {
+        setState(() {
+          _image = pickedimage;
+        });
+        print("Image upload succersfully");
+        await uploadimage();
+      }
+    } catch (e) {
+      print("Error picking image:$e");
+    }
+  }
+
+  Future<void> uploadimage() async {
+    try {
+      if (_image != null) {
+        Reference storrageReference =
+            FirebaseStorage.instance.ref().child('profile/${_image!.path}');
+        await storrageReference.putFile(File(_image!.path));
+        imageURL = await storrageReference.getDownloadURL();
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+          "Uploaded succesfully",
+          style: TextStyle(color: Colors.green),
+        )));
+
+        FirebaseFirestore.instance
+            .collection("store")
+            .doc(ID)
+            .update({"path": imageURL});
+        print("/////////picked$imageURL");
+      } else
+        CircularProgressIndicator();
+    } catch (e) {
+      print("Error uploading image:$e");
+    }
+  }
+
+  Future<void> getData() async {
+    SharedPreferences spref = await SharedPreferences.getInstance();
+    setState(() {
+      ID = spref.getString("id")!;
+
+      spref.getString(
+        "id",
+      );
+
+      print(ID.toString());
+    });
+    print("Updated");
+  }
+
+  var ID = '';
+
+  GEtDtata() async {
+    store = await FirebaseFirestore.instance.collection('store').doc(ID).get();
+  }
+
+  DocumentSnapshot? store;
+
+  Future<dynamic> sigh() async {
+    await FirebaseFirestore.instance.collection('AddStore').add({
+      "shopname": shopenaamectrl.text,
+      "pincode": addressctrl.text,
+      "password": pincodectrl.text,
+      "path": imageURL,
+      "status": 0
+    }).then((value) {
+      print("Success");
+      Navigator.of(context).pop();
+      print("Signup success");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,25 +126,20 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
                           Padding(
                             padding: EdgeInsets.only(top: 20.h),
                             child: Container(
-                                width: 280.w,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white),
-                                child: selectimg != null
-                                    ? Image.file(selectimg!)
-                                    : InkWell(
-                                        onTap: () async {
-                                          final img = await ImagePicker()
-                                              .pickImage(
-                                                  source: ImageSource.gallery);
-                                          setState(() {
-                                            selectimg = File(img!.path);
-                                          });
-                                        },
-                                        child: Icon(
-                                            Icons.add_photo_alternate_outlined),
-                                      )),
+                              width: 280.w,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white),
+                              child:
+
+                                   InkWell(
+                                      onTap: () {
+                                        pickimage();
+                                      },
+                                      child: Icon(Icons.photo),
+                                    ),
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 30.w, top: 20.h),
@@ -78,6 +163,7 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
                                   width: 290.w,
                                   height: 50.h,
                                   child: TextFormField(
+                                      controller: shopenaamectrl,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText: "  Enter name",
@@ -116,6 +202,7 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
                                   width: 290.w,
                                   height: 150.h,
                                   child: TextFormField(
+                                      controller: addressctrl,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText: "  Enter address",
@@ -156,6 +243,7 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
                                   width: 290.w,
                                   height: 50.h,
                                   child: TextFormField(
+                                      controller: pincodectrl,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintText: "  Enter Pincode",
@@ -182,12 +270,7 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
                                   height: 50.h,
                                   child: TextButton(
                                       onPressed: () {
-                                        Navigator.push(context,
-                                            MaterialPageRoute(
-                                          builder: (context) {
-                                            return StoreKeeperAddStore();
-                                          },
-                                        ));
+                                        sigh();
                                       },
                                       child: Text(
                                         "SUBMIT",
