@@ -135,7 +135,8 @@ class _SkloginState extends State<Sklogin> {
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(10))))),
+                                    BorderRadius.all(Radius.circular(10))))
+                    ),
                   ),
                 ],
               ),

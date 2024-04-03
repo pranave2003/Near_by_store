@@ -19,6 +19,7 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
   var shopenaamectrl = TextEditingController();
   var addressctrl = TextEditingController();
   var pincodectrl = TextEditingController();
+  var category = TextEditingController();
 
   void initState() {
     getData();
@@ -55,11 +56,6 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
           "Uploaded succesfully",
           style: TextStyle(color: Colors.green),
         )));
-
-        FirebaseFirestore.instance
-            .collection("store")
-            .doc(ID)
-            .update({"path": imageURL});
         print("/////////picked$imageURL");
       } else
         CircularProgressIndicator();
@@ -96,6 +92,8 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
       "pincode": addressctrl.text,
       "password": pincodectrl.text,
       "path": imageURL,
+      "catagory": category.text,
+      "storeID": ID,
       "status": 0
     }).then((value) {
       print("Success");
@@ -127,138 +125,186 @@ class _StoreKeeperAddStoreState extends State<StoreKeeperAddStore> {
                             padding: EdgeInsets.only(top: 20.h),
                             child: Container(
                               width: 280.w,
-                              height: 200,
+                              height: 100,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white),
-                              child:
+                              child: InkWell(
+                                onTap: () {
+                                  pickimage();
+                                },
+                                child: Icon(Icons.photo),
+                              ),
+                            ),
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 10.w, top: 10.h),
+                                child: const Row(
+                                  children: [
+                                    Text(
+                                      "Shope name",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10,
+                                  right: 10,
+                                ),
+                                child: TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'empty shopename';
+                                      }
+                                    },
+                                    controller: shopenaamectrl,
+                                    cursorColor: Colors.blue,
+                                    style: TextStyle(),
+                                    decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        hintText: "Enter Shopename",
+                                        enabledBorder: OutlineInputBorder(),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))))),
+                              ),
+                            ],
+                          ),
+                          //
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 10.w, top: 10.h),
+                                child: const Row(
+                                  children: [
+                                    Text(
+                                      "shope address",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10,
+                                  right: 10,
+                                ),
+                                child: TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'empty shope address';
+                                      }
+                                    },
+                                    controller: addressctrl,
+                                    maxLines: 5,
+                                    cursorColor: Colors.blue,
+                                    style: TextStyle(),
+                                    decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        hintText: "Enter address",
+                                        enabledBorder: OutlineInputBorder(),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))))),
+                              ),
+                            ],
+                          ),
+                          //
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 10.w, top: 10.h),
+                                child: const Row(
+                                  children: [
+                                    Text(
+                                      "Shope pincode",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10,
+                                  right: 10,
+                                ),
+                                child: TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'empty pincode';
+                                      }
+                                    },
+                                    controller: pincodectrl,
+                                    cursorColor: Colors.blue,
+                                    style: TextStyle(),
+                                    decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        hintText: "Enter pincode",
+                                        enabledBorder: OutlineInputBorder(),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))))),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 10.w, top: 10.h),
+                                child: const Row(
+                                  children: [
+                                    Text(
+                                      "Shope catagory",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10,
+                                  right: 10,
+                                ),
+                                child: TextFormField(
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'empty shopename';
+                                      }
+                                    },
+                                    controller: category,
+                                    cursorColor: Colors.blue,
+                                    style: TextStyle(),
+                                    decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        hintText: "Eg;Fancy, Medical shope,",
+                                        enabledBorder: OutlineInputBorder(),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))))),
+                              ),
+                            ],
+                          ),
 
-                                   InkWell(
-                                      onTap: () {
-                                        pickimage();
-                                      },
-                                      child: Icon(Icons.photo),
-                                    ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 30.w, top: 20.h),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Name",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 290.w,
-                                  height: 50.h,
-                                  child: TextFormField(
-                                      controller: shopenaamectrl,
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "  Enter name",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey))),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.grey, width: 2),
-                                      borderRadius:
-                                          BorderRadius.circular(20.sp),
-                                      color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                          //
-                          Padding(
-                            padding: EdgeInsets.only(left: 30.w, top: 20.h),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Address",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 290.w,
-                                  height: 150.h,
-                                  child: TextFormField(
-                                      controller: addressctrl,
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "  Enter address",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey))),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.grey, width: 2),
-                                      borderRadius:
-                                          BorderRadius.circular(20.sp),
-                                      color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                          //
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 30.w,
-                            ),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Pincode",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 290.w,
-                                  height: 50.h,
-                                  child: TextFormField(
-                                      controller: pincodectrl,
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "  Enter Pincode",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey))),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.grey, width: 2),
-                                      borderRadius:
-                                          BorderRadius.circular(20.sp),
-                                      color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
                           //
                           Padding(
                             padding: const EdgeInsets.all(8.0),

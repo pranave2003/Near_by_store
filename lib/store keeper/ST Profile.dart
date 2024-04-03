@@ -88,7 +88,6 @@ class _STprofileState extends State<STprofile> {
 
   DocumentSnapshot? store;
 
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

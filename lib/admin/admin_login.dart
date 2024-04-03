@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ class AdminLogin extends StatefulWidget {
 class _AdminLoginState extends State<AdminLogin> {
   var Name = TextEditingController();
   var Pass = TextEditingController();
+
   login() {
     if (Name.text == 'admin@gmail.com' && Pass.text == '123') {
       Navigator.push(context, MaterialPageRoute(
@@ -146,6 +148,7 @@ class _AdminLoginState extends State<AdminLogin> {
                       child: TextButton(
                           onPressed: () {
                             login();
+
                           },
                           child: Text(
                             "LOGIN",

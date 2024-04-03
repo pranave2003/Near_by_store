@@ -80,7 +80,7 @@ class _AdminStoreState extends State<AdminStore> {
                         width: 100.w,
                         height: 100.h,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(30),
                             image: DecorationImage(
                                 image: AssetImage("assets/Rectangle 32.jpg"),
                                 fit: BoxFit.fill)),
@@ -89,7 +89,7 @@ class _AdminStoreState extends State<AdminStore> {
                         width: 100.w,
                         height: 100.h,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(60),
                             image: DecorationImage(
                                 image: NetworkImage(store!['path']),
                                 fit: BoxFit.fill)),
@@ -162,7 +162,7 @@ class _AdminStoreState extends State<AdminStore> {
                           height: 40.h,
                           width: 300.w,
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.green),
+                            border: Border.all(color: Colors.green,width: 2),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: TextButton(
@@ -183,7 +183,8 @@ class _AdminStoreState extends State<AdminStore> {
                       height: 40.h,
                       width: 300.w,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.red),
+
+                        border: Border.all(color: Colors.red,width: 2),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: TextButton(
