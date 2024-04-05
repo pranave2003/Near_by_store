@@ -53,24 +53,24 @@ class _FruitsState extends State<Fruits> {
         final fruits = snapshot.data?.docs ?? [];
 
         return Scaffold(
-          body: InkWell(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return UserProductDetails();
-                },
-              ));
-            },
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  mainAxisExtent: 170),
-              itemCount: fruits.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(left: 10.sp),
+          body: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                mainAxisExtent: 170),
+            itemCount: fruits.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.only(left: 10.sp),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return UserProductDetails(id:fruits[index].id);
+                      },
+                    ));
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -113,9 +113,9 @@ class _FruitsState extends State<Fruits> {
                       ],
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         );
       },
